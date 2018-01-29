@@ -2,30 +2,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Board from './Board';
+import { observe } from './Game';
 
-export default class Board extends Component {
-  render (){
-    return (
-      <div>
-        <Square black>
-          <Knight />
-        </Square>
-      </div>
-    );
-  }
-}
+const rootEl = document.getElementById('root');
 
-Board.propTypes = {
-  knightPosition: PropTypes.arrayOf(
-    PropTypes.number.isRequired
-  ).isRequired
-};
-
-ReactDOM.render(
-  <Square black>
-    <Knight />
-  </Square>,
-  document.getElementById('root'));
+observe(knightPosition =>
+  ReactDOM.render(
+    <Board knightPosition={knightPosition} />,
+    rootEl
+  )
+);
 
 
 // import './index.css';
